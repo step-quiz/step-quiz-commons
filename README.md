@@ -15,10 +15,20 @@ canvi en lloc de cinc.
 | `footer.js` | Peu de pàgina (autoria i llicència) | karelcat, karelcat-p, pycat, jscat |
 | `kbd-accessory.js` | Barra de tecles per a pantalles tàctils | karelcat, karelcat-p, pycat, jscat |
 | `progress.js` | Exercicis i reptes superats (localStorage) | pycat, jscat, ggcat |
+| `certificat.js` | Certificat en acabar el curs i enllaç al curs següent (KarelCat → PyCat → JSCat) | karelcat, pycat, jscat |
 
 [`comuns.json`](comuns.json) diu, per a cada web, **quins fitxers rep, on van i amb quina
 configuració**. Allà hi ha tot el que és diferent d'un web a l'altre: quin és el projecte
 actual del selector, si el peu és fix, quines tecles té la barra, la clau del progrés…
+
+## El certificat i la cadena de cursos
+
+`certificat.js` posa, a l'índex de cada curs (`<section id="certificat">`), el progrés cap al
+certificat i, quan s'han superat tots els capítols, el certificat (amb el nom que hi escriu
+l'alumne i la data) i l'enllaç al curs següent. La cadena és **KarelCat → PyCat → JSCat**:
+l'HTML (HTMLCat) i el GeoGebra (GeoCat) hi van a part. A `comuns.json` es diu, per a cada curs,
+fins a quin capítol compta (els posteriors són extres), si s'hi compten els reptes i quin és el
+curs següent. Les proves comproven que la cadena sigui aquesta.
 
 ## Com arriben als webs
 

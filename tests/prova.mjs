@@ -11,6 +11,9 @@
 //   · progress.js → desa, no desgrava mai i fa servir la clau del web;
 //   · kbd-accessory.js → en pantalla tàctil hi ha una tecla per entrada i
 //                  escriuen a l'editor; amb ratolí no surt res.
+//   · certificat.js → amb capítols pendents diu quants en falten; amb tots
+//                  superats mostra el certificat amb el nom i l'enllaç al curs
+//                  següent (o el final de la sèrie, a JSCat).
 // També comprova que tots els fitxers de comuns.json existeixen.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -114,8 +117,46 @@ for (const [web, def] of Object.entries(COMUNS)) {
     executa(r, api + codi('kbd-accessory.js'));
     ok(!r.window.document.querySelector('.kbd-bar'), `${web}: amb ratolí no hi hauria d'haver barra`);
   }
+  if (desti('certificat.js')) {
+    const c = cfg['certificat.js'];
+    // Un curs de mentida: 4 capítols (el 4t, extra si finsCapitol < 4) i 2 reptes
+    const N = Math.min(3, c.finsCapitol);
+    const caps = [1, 2, 3, 4].map(n => ({ num: n, titol: 'Capítol ' + n, arxiu: `capitol-${n}.html`, goalId: `cap-${n}-ex` }));
+    caps.forEach(x => { if (x.num > N) x.num = c.finsCapitol + 1; });
+    const reptes = [{ num: 1, titol: 'R1', arxiu: 'repte-1.html', goalId: 'repte-1', mons: 3 }, { num: 2, titol: 'R2', arxiu: 'repte-2.html', goalId: 'repte-2', mons: 3 }];
+    const prepara = (fets, reptesFets) => {
+      const d = dom('<section id="certificat"></section>');
+      const dades = `window.CAPITOLS_DATA = ${JSON.stringify(caps)}; window.REPTES_DATA = ${JSON.stringify(reptes)};`;
+      const prog = c.progres === 'karel'
+        ? `window.KProgress = { exerciciSuperat: n => ${JSON.stringify(fets)}.includes(n), estatRepte: n => ({ complet: ${JSON.stringify(reptesFets)}.includes(n) }) };`
+        : `function getProgress() { const p = {}; ${JSON.stringify(fets)}.forEach(n => p['cap-' + n + '-ex'] = true); ${JSON.stringify(reptesFets)}.forEach(n => p['repte-' + n] = true); return p; }`;
+      executa(d, dades + prog + codi('certificat.js'));
+      return d.window.document;
+    };
+    let doc = prepara([1], []);
+    const sec = doc.getElementById('certificat');
+    ok(/1 de 3 capítols superats/.test(sec.textContent), `${web}: certificat.js no diu «1 de 3 capítols superats» (${sec.textContent.slice(0, 120)})`);
+    ok(sec.querySelectorAll('.cert-falten a').length === 2 && !sec.querySelector('.cert-paper'), `${web}: amb capítols pendents no ha de sortir el certificat`);
+    doc = prepara([1, 2, 3], [2]);
+    const paper = doc.querySelector('.cert-paper');
+    ok(paper && paper.textContent.includes(c.curs), `${web}: amb tots els capítols superats hauria de sortir el certificat de ${c.curs}`);
+    if (paper) {
+      const input = doc.querySelector('.cert-nom');
+      input.value = 'Ada Lovelace'; input.dispatchEvent(new doc.defaultView.Event('input'));
+      ok(doc.querySelector('.cert-paper-nom').textContent === 'Ada Lovelace', `${web}: el nom no surt al certificat`);
+      ok(doc.defaultView.localStorage.getItem(c.clauNom) === 'Ada Lovelace', `${web}: el nom no es desa a ${c.clauNom}`);
+      ok(!!c.reptes === /Reptes superats: 1 de 2/.test(paper.textContent), `${web}: el recompte de reptes no és el que diu la configuració`);
+      const seg = doc.querySelector('.cert-seguent');
+      if (c.seguent) ok(seg && seg.getAttribute('href') === c.seguent.url && seg.textContent.includes(c.seguent.nom), `${web}: falta l'enllaç a ${c.seguent.nom}`);
+      else ok(!seg && /KarelCat → PyCat → JSCat/.test(doc.getElementById('certificat').textContent), `${web}: l'últim curs de la sèrie no ha d'enllaçar cap altre curs`);
+    }
+  }
   fs.rmSync(tmp, { recursive: true, force: true });
 }
+
+// La cadena de cursos és KarelCat → PyCat → JSCat (l'HTML va a part)
+const cadena = Object.entries(COMUNS).filter(([, d]) => d.config?.['certificat.js']).map(([w, d]) => [w, d.config['certificat.js'].seguent?.nom || null]);
+ok(JSON.stringify(cadena) === JSON.stringify([['karelcat', 'PyCat'], ['pycat', 'JSCat'], ['jscat', null]]), `la cadena de certificats hauria de ser KarelCat → PyCat → JSCat (és ${JSON.stringify(cadena)})`);
 
 console.log(errors ? `\n✗ ${errors} errors (${oks} comprovacions correctes)` : `\n✓ Tot correcte: ${oks} comprovacions.`);
 process.exit(errors ? 1 : 0);

@@ -11,9 +11,11 @@
         "img/jscat.svg": "img/jscat.svg",
         "family.js": "family.js",
         "footer.js": "footer.js",
-        "js/kbd-accessory.js": "kbd-accessory.js"
+        "js/kbd-accessory.js": "kbd-accessory.js",
+        "curs/certificat.js": "certificat.js"
       },
       "config": {
+        "certificat.js": { "curs": "KarelCat", "web": "karelcat.step-quiz.net", "progres": "karel", "finsCapitol": 10, "reptes": true, "seguent": { "nom": "PyCat", "url": "https://pycat.step-quiz.net/curs/", "text": "El pas següent: Python de debò, al navegador." }, "clauNom": "karel_certificat_nom" },
         "family.js": { "actual": "karelcat" },
         "footer.js": { "classe": "karel-footer", "fix": false },
         "kbd-accessory.js": {
@@ -72,9 +74,11 @@
         "family.js": "family.js",
         "footer.js": "footer.js",
         "js/kbd-accessory.js": "kbd-accessory.js",
-        "curs/progress.js": "progress.js"
+        "curs/progress.js": "progress.js",
+        "curs/certificat.js": "certificat.js"
       },
       "config": {
+        "certificat.js": { "curs": "PyCat", "web": "pycat.step-quiz.net", "progres": "goals", "finsCapitol": 11, "reptes": true, "seguent": { "nom": "JSCat", "url": "https://jscat.step-quiz.net/curs/", "text": "El pas següent: JavaScript, per fer pàgines web que reaccionen." }, "clauNom": "pycat_certificat_nom" },
         "family.js": { "actual": "pycat", "centraDesDe": 1000, "amagaNomSota": 699, "amagaTotSota": 599, "posicio": "inici" },
         "footer.js": { "classe": "pycat-footer", "fix": true },
         "kbd-accessory.js": {
@@ -95,9 +99,11 @@
         "family.js": "family.js",
         "footer.js": "footer.js",
         "js/kbd-accessory.js": "kbd-accessory.js",
-        "curs/progress.js": "progress.js"
+        "curs/progress.js": "progress.js",
+        "curs/certificat.js": "certificat.js"
       },
       "config": {
+        "certificat.js": { "curs": "JSCat", "web": "jscat.step-quiz.net", "progres": "goals", "finsCapitol": 12, "reptes": false, "seguent": null, "clauNom": "jscat_certificat_nom" },
         "family.js": { "actual": "jscat" },
         "footer.js": { "classe": "jscat-footer", "fix": true },
         "kbd-accessory.js": {
