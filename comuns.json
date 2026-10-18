@@ -79,7 +79,6 @@
         "footer.js": { "classe": "pycat-footer", "fix": true },
         "kbd-accessory.js": {
           "disposicio": "fixa",
-          "api": "P",
           "tecles": ["(", ")", "[", "]", "{", "}", null, "\"", "'", ":", "#", "_", null, "=", "+", "-", "*", "/", "%", null, "<", ">", "!"]
         },
         "progress.js": { "clau": "pycat_progress" }
