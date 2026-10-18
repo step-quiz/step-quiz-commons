@@ -1,0 +1,31 @@
+# Comprova els fitxers comuns tal com els rebrà cada web (tests/prova.mjs)
+# abans que els webs se'ls emportin (ho fan cada dia, amb comuns.yml).
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prova:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Sintaxi
+        run: for f in fitxers/*.js; do node --check "$f" || exit 1; done
+
+      - name: Instal·la jsdom
+        run: npm install --no-save --no-audit --no-fund jsdom
+
+      - name: Fitxers comuns de cada web
+        run: node tests/prova.mjs

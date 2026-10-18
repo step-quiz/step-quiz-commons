@@ -1,0 +1,132 @@
+{
+  "_que_es": "Per a cada web: quins fitxers comuns rep (destí → fitxer de fitxers/) i, per als que ho necessiten, la seva configuració (s'escriu en lloc de /*@CONFIG*/{}). Ho aplica sincronitza.py.",
+  "webs": {
+    "karelcat": {
+      "fitxers": {
+        "LICENSE": "LICENSE",
+        "LLICENCIA.md": "LLICENCIA.md",
+        "img/htmlcat.svg": "img/htmlcat.svg",
+        "img/pycat.svg": "img/pycat.svg",
+        "img/karelcat.svg": "img/karelcat.svg",
+        "img/jscat.svg": "img/jscat.svg",
+        "family.js": "family.js",
+        "footer.js": "footer.js",
+        "js/kbd-accessory.js": "kbd-accessory.js"
+      },
+      "config": {
+        "family.js": { "actual": "karelcat" },
+        "footer.js": { "classe": "karel-footer", "fix": false },
+        "kbd-accessory.js": {
+          "disposicio": "sota",
+          "api": "K",
+          "tecles": [
+            { "label": "⇥", "title": "Indenta (4 espais)", "accio": "indenta" },
+            { "label": "⇤", "title": "Treu un nivell d'indentació", "accio": "desindenta" },
+            "(", ")", ":", "_", { "label": "#", "text": "# " },
+            null,
+            "move()", "turn_left()", "turn_right()", "turn_around()", "grab()", "drop()",
+            null,
+            { "label": "if", "text": "if " }, { "label": "elif", "text": "elif " }, "else:",
+            { "label": "while", "text": "while " }, { "label": "for", "text": "for i in range(" },
+            { "label": "def", "text": "def " }, { "label": "not", "text": "not " },
+            "front_is_clear()", "pearl_here()"
+          ]
+        }
+      }
+    },
+    "karelcat-p": {
+      "fitxers": {
+        "LICENSE": "LICENSE",
+        "LLICENCIA.md": "LLICENCIA.md",
+        "footer.js": "footer.js",
+        "js/kbd-accessory.js": "kbd-accessory.js"
+      },
+      "config": {
+        "footer.js": { "classe": "karel-footer", "fix": false },
+        "kbd-accessory.js": {
+          "disposicio": "sota",
+          "api": "K",
+          "tecles": [
+            { "label": "⇥", "title": "Indenta (4 espais)", "accio": "indenta" },
+            { "label": "⇤", "title": "Treu un nivell d'indentació", "accio": "desindenta" },
+            "(", ")", ":", "_", { "label": "#", "text": "# " },
+            null,
+            "move()", "turn_left()", "turn_right()", "turn_around()", "grab()", "drop()",
+            null,
+            { "label": "if", "text": "if " }, { "label": "elif", "text": "elif " }, "else:",
+            { "label": "while", "text": "while " }, { "label": "for", "text": "for i in range(" },
+            { "label": "def", "text": "def " }, { "label": "not", "text": "not " },
+            "front_is_clear()", "pearl_here()"
+          ]
+        }
+      }
+    },
+    "pycat": {
+      "fitxers": {
+        "LICENSE": "LICENSE",
+        "LLICENCIA.md": "LLICENCIA.md",
+        "img/htmlcat.svg": "img/htmlcat.svg",
+        "img/pycat.svg": "img/pycat.svg",
+        "img/karelcat.svg": "img/karelcat.svg",
+        "img/jscat.svg": "img/jscat.svg",
+        "family.js": "family.js",
+        "footer.js": "footer.js",
+        "js/kbd-accessory.js": "kbd-accessory.js",
+        "curs/progress.js": "progress.js"
+      },
+      "config": {
+        "family.js": { "actual": "pycat", "centraDesDe": 1000, "amagaNomSota": 699, "amagaTotSota": 599, "posicio": "inici" },
+        "footer.js": { "classe": "pycat-footer", "fix": true },
+        "kbd-accessory.js": {
+          "disposicio": "fixa",
+          "api": "P",
+          "tecles": ["(", ")", "[", "]", "{", "}", null, "\"", "'", ":", "#", "_", null, "=", "+", "-", "*", "/", "%", null, "<", ">", "!"]
+        },
+        "progress.js": { "clau": "pycat_progress" }
+      }
+    },
+    "jscat": {
+      "fitxers": {
+        "LICENSE": "LICENSE",
+        "LLICENCIA.md": "LLICENCIA.md",
+        "img/htmlcat.svg": "img/htmlcat.svg",
+        "img/pycat.svg": "img/pycat.svg",
+        "img/karelcat.svg": "img/karelcat.svg",
+        "img/jscat.svg": "img/jscat.svg",
+        "family.js": "family.js",
+        "footer.js": "footer.js",
+        "js/kbd-accessory.js": "kbd-accessory.js",
+        "curs/progress.js": "progress.js"
+      },
+      "config": {
+        "family.js": { "actual": "jscat" },
+        "footer.js": { "classe": "jscat-footer", "fix": true },
+        "kbd-accessory.js": {
+          "disposicio": "fixa",
+          "tecles": ["(", ")", "{", "}", "[", "]", null, ";", ".", "\"", "'", "`", null, "=", "+", "-", "*", "/", "%", null, "<", ">", "!", "&", "|", null, { "label": "=>", "text": "=> " }]
+        },
+        "progress.js": { "clau": "jscat_progress" }
+      }
+    },
+    "htmlcat": {
+      "fitxers": {
+        "LICENSE": "LICENSE",
+        "LLICENCIA.md": "LLICENCIA.md",
+        "site/img/family/htmlcat.svg": "img/htmlcat.svg",
+        "site/img/family/pycat.svg": "img/pycat.svg",
+        "site/img/family/karelcat.svg": "img/karelcat.svg",
+        "site/img/family/jscat.svg": "img/jscat.svg"
+      }
+    },
+    "ggcat": {
+      "fitxers": {
+        "LICENSE": "LICENSE",
+        "LLICENCIA.md": "LLICENCIA.md",
+        "curs/progress.js": "progress.js"
+      },
+      "config": {
+        "progress.js": { "clau": "geocat_progress" }
+      }
+    }
+  }
+}
