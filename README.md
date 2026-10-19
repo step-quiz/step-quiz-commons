@@ -75,6 +75,15 @@ Per comprovar a mà si un web està al dia, des d'una carpeta on hi hagi tots do
 python3 step-quiz-commons/sincronitza.py pycat pycat --comprova
 ```
 
+## Auditoria d'accessibilitat
+
+[`eines/auditoria-a11y.mjs`](eines/auditoria-a11y.mjs) passa axe-core (WCAG 2.1 A i AA) i una prova
+de teclat a les pàgines que li diguis de qualsevol web. No és una dependència dels webs: cal
+instal·lar Playwright i axe-core a part. L'auditoria d'octubre de 2026, què es va arreglar i què
+queda: [`docs/auditoria-accessibilitat-2026-10.md`](docs/auditoria-accessibilitat-2026-10.md).
+El que es va mesurar i millorar del pes de les pàgines (Chromebooks i mòbils):
+[`docs/rendiment-2026-10.md`](docs/rendiment-2026-10.md).
+
 ## Què no és aquí, i per què
 
 - **El progrés de KarelCat i KarelCat-P** (`curs/progress.js`, `KProgress`): desa també
