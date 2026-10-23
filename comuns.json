@@ -132,6 +132,16 @@
       "config": {
         "progress.js": { "clau": "geocat_progress" }
       }
+    },
+    "figures": {
+      "fitxers": {
+        "js/motor/geo-motor.js": "geo-motor.js"
+      }
+    },
+    "teoremes": {
+      "fitxers": {
+        "js/motor/geo-motor.js": "geo-motor.js"
+      }
     }
   }
 }

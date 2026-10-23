@@ -1,9 +1,10 @@
 # step-quiz-commons
 
-Els fitxers que comparteixen els cursos de programació de Step Quiz (KarelCat, KarelCat-P,
-PyCat, JSCat, HTMLCat i GeoCat). Cada fitxer és aquí **una sola vegada**: els webs en tenen una
-còpia que es posa al dia sola. Així, per exemple, canviar el text del peu de pàgina és un sol
-canvi en lloc de cinc.
+Els fitxers que comparteixen els webs de Step Quiz: els cursos de programació (KarelCat,
+KarelCat-P, PyCat, JSCat, HTMLCat i GeoCat) i, des d'octubre de 2026, també els webs de
+geometria que fan servir el **GeoMotor** (Figures d'examen i Teoremes que no t'esperes). Cada
+fitxer és aquí **una sola vegada**: els webs en tenen una còpia que es posa al dia sola. Així,
+per exemple, canviar el text del peu de pàgina és un sol canvi en lloc de cinc.
 
 ## Què hi ha
 
@@ -16,6 +17,7 @@ canvi en lloc de cinc.
 | `kbd-accessory.js` | Barra de tecles per a pantalles tàctils | karelcat, karelcat-p, pycat, jscat |
 | `progress.js` | Exercicis i reptes superats (localStorage) | pycat, jscat, ggcat |
 | `certificat.js` | Certificat en acabar el curs i enllaç al curs següent (KarelCat → PyCat → JSCat) | karelcat, pycat, jscat |
+| `geo-motor.js` | GeoMotor: el motor de geometria dinàmica (construccions, interseccions amb branques, serialització). Va a `js/motor/geo-motor.js` | figures, teoremes |
 
 [`comuns.json`](comuns.json) diu, per a cada web, **quins fitxers rep, on van i amb quina
 configuració**. Allà hi ha tot el que és diferent d'un web a l'altre: quin és el projecte
@@ -64,7 +66,11 @@ npm install --no-save jsdom      # només la primera vegada
 node tests/prova.mjs
 ```
 
-Per a cada web, genera els fitxers tal com els rebrà i els executa en un navegador simulat:
+Per a cada web, genera els fitxers tal com els rebrà i els executa en un navegador simulat (el
+GeoMotor, a més, té els seus propis tests sense dependències, `node tests/geo-motor.test.js`, que
+`prova.mjs` també executa: interseccions contra les solucions analítiques, cada tipus de
+conveniència igual que la seva construcció amb primitives, continuïtat de les branques i
+serialització byte a byte):
 el selector té les quatre icones i els punts de tall del web, el peu és fix o no, el progrés es
 desa amb la clau de sempre (si canviés, l'alumnat el perdria) i la barra de tecles escriu a
 l'editor.

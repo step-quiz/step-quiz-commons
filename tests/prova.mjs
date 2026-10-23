@@ -45,6 +45,15 @@ for (const [web, def] of Object.entries(COMUNS)) {
   const desti = font => Object.entries(def.fitxers).find(([, f]) => f === font)?.[0];
   const codi = font => fs.readFileSync(path.join(tmp, desti(font)), 'utf8');
 
+  if (desti('geo-motor.js')) {
+    // El GeoMotor és un script clàssic: es carrega al navegador i exposa window.GeoMotor
+    const d = dom('');
+    executa(d, codi('geo-motor.js'));
+    const GM = d.window.GeoMotor;
+    ok(GM && typeof GM.avalua === 'function' && GM.VERSIO === 1, `${web}: geo-motor.js no exposa window.GeoMotor (versió 1)`);
+    ok(/FITXER COMÚ/.test(codi('geo-motor.js')), `${web}: geo-motor.js no porta l'avís de FITXER COMÚ`);
+  }
+
   if (desti('family.js')) {
     const c = cfg['family.js'];
     const d = dom('<header class="topbar"><div class="topbar-actions"><button id="b">x</button></div></header>');
@@ -157,6 +166,17 @@ for (const [web, def] of Object.entries(COMUNS)) {
 // La cadena de cursos és KarelCat → PyCat → JSCat (l'HTML va a part)
 const cadena = Object.entries(COMUNS).filter(([, d]) => d.config?.['certificat.js']).map(([w, d]) => [w, d.config['certificat.js'].seguent?.nom || null]);
 ok(JSON.stringify(cadena) === JSON.stringify([['karelcat', 'PyCat'], ['pycat', 'JSCat'], ['jscat', null]]), `la cadena de certificats hauria de ser KarelCat → PyCat → JSCat (és ${JSON.stringify(cadena)})`);
+
+// El GeoMotor (fitxers/geo-motor.js) té els seus propis tests, sense dependències
+console.log('· geo-motor.js (tests/geo-motor.test.js)');
+try {
+  const sortida = execFileSync(process.execPath, [path.join(ARREL, 'tests', 'geo-motor.test.js')], { stdio: 'pipe' }).toString();
+  const m = /GEOMOTOR: (\d+) correctes/.exec(sortida);
+  ok(!!m, 'tests/geo-motor.test.js no ha acabat bé');
+  if (m) oks += Number(m[1]) - 1;
+} catch (e) {
+  ok(false, 'tests/geo-motor.test.js falla:\n' + String(e.stdout || e.message).split('\n').filter(l => /✗/.test(l)).join('\n'));
+}
 
 console.log(errors ? `\n✗ ${errors} errors (${oks} comprovacions correctes)` : `\n✓ Tot correcte: ${oks} comprovacions.`);
 process.exit(errors ? 1 : 0);

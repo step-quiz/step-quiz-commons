@@ -43,3 +43,7 @@ node tests/prova.mjs
 ```
 
 Els webs reben aquests fitxers cada dia (workflow `comuns.yml` de cada web). Als webs no s'editen: es canvien aquí.
+
+**GeoMotor** (`fitxers/geo-motor.js`): el fan servir figures i teoremes (a `js/motor/geo-motor.js`). És pur, sense DOM;
+qualsevol canvi ha de passar `node tests/geo-motor.test.js` i no pot trencar les construccions desades (format
+`versio: 1`): si cal un canvi incompatible, s'augmenta la versió i `llegeix()` ha de continuar llegint la 1.
