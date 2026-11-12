@@ -9,6 +9,7 @@
         "img/pycat.svg": "img/pycat.svg",
         "img/karelcat.svg": "img/karelcat.svg",
         "img/jscat.svg": "img/jscat.svg",
+        "img/logocat.svg": "img/logocat.svg",
         "family.js": "family.js",
         "footer.js": "footer.js",
         "js/kbd-accessory.js": "kbd-accessory.js",
@@ -71,6 +72,7 @@
         "img/pycat.svg": "img/pycat.svg",
         "img/karelcat.svg": "img/karelcat.svg",
         "img/jscat.svg": "img/jscat.svg",
+        "img/logocat.svg": "img/logocat.svg",
         "family.js": "family.js",
         "footer.js": "footer.js",
         "js/kbd-accessory.js": "kbd-accessory.js",
@@ -96,6 +98,7 @@
         "img/pycat.svg": "img/pycat.svg",
         "img/karelcat.svg": "img/karelcat.svg",
         "img/jscat.svg": "img/jscat.svg",
+        "img/logocat.svg": "img/logocat.svg",
         "family.js": "family.js",
         "footer.js": "footer.js",
         "js/kbd-accessory.js": "kbd-accessory.js",
@@ -120,7 +123,8 @@
         "site/img/family/htmlcat.svg": "img/htmlcat.svg",
         "site/img/family/pycat.svg": "img/pycat.svg",
         "site/img/family/karelcat.svg": "img/karelcat.svg",
-        "site/img/family/jscat.svg": "img/jscat.svg"
+        "site/img/family/jscat.svg": "img/jscat.svg",
+        "site/img/family/logocat.svg": "img/logocat.svg"
       }
     },
     "ggcat": {
@@ -131,6 +135,23 @@
       },
       "config": {
         "progress.js": { "clau": "geocat_progress" }
+      }
+    },
+    "logocat": {
+      "fitxers": {
+        "LICENSE": "LICENSE",
+        "LLICENCIA.md": "LLICENCIA.md",
+        "img/htmlcat.svg": "img/htmlcat.svg",
+        "img/pycat.svg": "img/pycat.svg",
+        "img/karelcat.svg": "img/karelcat.svg",
+        "img/jscat.svg": "img/jscat.svg",
+        "img/logocat.svg": "img/logocat.svg",
+        "family.js": "family.js",
+        "footer.js": "footer.js"
+      },
+      "config": {
+        "family.js": { "actual": "logocat", "centraDesDe": 100000, "amagaNomSota": 1100, "posicio": "inici", "fontExterna": false },
+        "footer.js": { "classe": "logocat-footer", "fix": false }
       }
     },
     "figures": {

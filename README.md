@@ -1,7 +1,7 @@
 # step-quiz-commons
 
-Els fitxers que comparteixen els webs de Step Quiz: els cursos de programació (KarelCat,
-KarelCat-P, PyCat, JSCat, HTMLCat i GeoCat) i, des d'octubre de 2026, també els webs de
+Els fitxers que comparteixen els webs de Step Quiz: els cursos de programació (LogoCat,
+KarelCat, KarelCat-P, PyCat, JSCat, HTMLCat i GeoCat) i, des d'octubre de 2026, també els webs de
 geometria que fan servir el **GeoMotor** (Figures d'examen i Teoremes que no t'esperes). Cada
 fitxer és aquí **una sola vegada**: els webs en tenen una còpia que es posa al dia sola. Així,
 per exemple, canviar el text del peu de pàgina és un sol canvi en lloc de cinc.
@@ -10,10 +10,10 @@ per exemple, canviar el text del peu de pàgina és un sol canvi en lloc de cinc
 
 | Fitxer (a `fitxers/`) | Què és | El reben |
 |---|---|---|
-| `LICENSE`, `LLICENCIA.md` | Llicència (contingut CC BY-NC-SA 4.0, codi MIT) | tots sis |
-| `img/*.svg` | Icones de la família (selector «EXPLORA») | karelcat, pycat, jscat, htmlcat |
-| `family.js` | Selector «EXPLORA» dels projectes germans | karelcat, pycat, jscat |
-| `footer.js` | Peu de pàgina (autoria i llicència) | karelcat, karelcat-p, pycat, jscat |
+| `LICENSE`, `LLICENCIA.md` | Llicència (contingut CC BY-NC-SA 4.0, codi MIT) | tots els cursos |
+| `img/*.svg` | Icones de la família (selector «EXPLORA») | logocat, karelcat, pycat, jscat, htmlcat |
+| `family.js` | Selector «EXPLORA» dels projectes germans (5 icones) | logocat, karelcat, pycat, jscat |
+| `footer.js` | Peu de pàgina (autoria i llicència) | logocat, karelcat, karelcat-p, pycat, jscat |
 | `kbd-accessory.js` | Barra de tecles per a pantalles tàctils | karelcat, karelcat-p, pycat, jscat |
 | `progress.js` | Exercicis i reptes superats (localStorage) | pycat, jscat, ggcat |
 | `certificat.js` | Certificat en acabar el curs i enllaç al curs següent (KarelCat → PyCat → JSCat) | karelcat, pycat, jscat |
@@ -28,9 +28,16 @@ actual del selector, si el peu és fix, quines tecles té la barra, la clau del 
 `certificat.js` posa, a l'índex de cada curs (`<section id="certificat">`), el progrés cap al
 certificat i, quan s'han superat tots els capítols, el certificat (amb el nom que hi escriu
 l'alumne i la data) i l'enllaç al curs següent. La cadena és **KarelCat → PyCat → JSCat**:
-l'HTML (HTMLCat) i el GeoGebra (GeoCat) hi van a part. A `comuns.json` es diu, per a cada curs,
+l'HTML (HTMLCat), el LOGO (LogoCat) i el GeoGebra (GeoCat) hi van a part: no tenen certificat. A `comuns.json` es diu, per a cada curs,
 fins a quin capítol compta (els posteriors són extres), si s'hi compten els reptes i quin és el
 curs següent. Les proves comproven que la cadena sigui aquesta.
+
+## Webs sense peticions a tercers
+
+LogoCat no fa cap petició fora del seu domini (l'alumnat és menor d'edat; el web té una prova
+que ho comprova). Per això la seva configuració de `family.js` porta `"fontExterna": false`: la
+paraula «EXPLORA» surt amb la lletra de reserva en lloc de la Josefin Sans de Google Fonts. Els
+altres webs no porten l'opció i continuen carregant-la.
 
 ## Com arriben als webs
 
@@ -71,7 +78,7 @@ GeoMotor, a més, té els seus propis tests sense dependències, `node tests/geo
 `prova.mjs` també executa: interseccions contra les solucions analítiques, cada tipus de
 conveniència igual que la seva construcció amb primitives, continuïtat de les branques i
 serialització byte a byte):
-el selector té les quatre icones i els punts de tall del web, el peu és fix o no, el progrés es
+el selector té les cinc icones (i cada icona existeix al web), els punts de tall del web, i la lletra de Google només si el web la vol, el peu és fix o no, el progrés es
 desa amb la clau de sempre (si canviés, l'alumnat el perdria) i la barra de tecles escriu a
 l'editor.
 

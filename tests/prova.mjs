@@ -5,7 +5,7 @@
 //
 // Per a cada web de comuns.json genera els fitxers (amb sincronitza.py, en una
 // carpeta temporal) i els executa en un navegador simulat (jsdom):
-//   · family.js  → selector amb les 4 icones, el projecte actual sense enllaç,
+//   · family.js  → selector amb les 5 icones, el projecte actual sense enllaç,
 //                  i els punts de tall de la configuració d'aquell web;
 //   · footer.js  → peu amb la classe del web, fix o no segons la configuració;
 //   · progress.js → desa, no desgrava mai i fa servir la clau del web;
@@ -61,10 +61,14 @@ for (const [web, def] of Object.entries(COMUNS)) {
     const nav = d.window.document.querySelector('.cat-family');
     ok(nav, `${web}: family.js no crea el selector`);
     if (nav) {
-      ok(nav.querySelectorAll('.cat-family-item').length === 4, `${web}: family.js no té 4 icones`);
+      ok(nav.querySelectorAll('.cat-family-item').length === 5, `${web}: family.js no té 5 icones`);
       const cur = nav.querySelector('.is-current');
       ok(cur && cur.tagName === 'SPAN' && cur.querySelector('img').src.endsWith(`img/${c.actual}.svg`), `${web}: el projecte actual no és ${c.actual} o és un enllaç`);
-      ok(nav.querySelectorAll('a.cat-family-item').length === 3, `${web}: family.js hauria de tenir 3 enllaços`);
+      ok(nav.querySelectorAll('a.cat-family-item').length === 4, `${web}: family.js hauria de tenir 4 enllaços`);
+      // Sense peticions a tercers quan el web ho demana (fontExterna: false, p. ex. LogoCat)
+      const google = [...d.window.document.querySelectorAll('link')].some(l => /fonts\.googleapis\.com/.test(l.href));
+      ok(google === (c.fontExterna !== false), `${web}: la lletra de Google ${c.fontExterna === false ? 'no ' : ''}s'hauria de carregar`);
+      for (const it of nav.querySelectorAll('.cat-family-item img')) ok(fs.existsSync(path.join(tmp, desti('family.js').replace(/[^/]*$/, ''), 'img', it.src.split('/').pop())), `${web}: falta la icona ${it.src.split('/').pop()}`);
       const css = [...d.window.document.querySelectorAll('style')].map(s => s.textContent).join('\n');
       ok(css.includes(`min-width: ${c.centraDesDe || 720}px`), `${web}: falta el punt de tall centraDesDe`);
       ok(css.includes(`max-width: ${c.amagaNomSota || 500}px`), `${web}: falta el punt de tall amagaNomSota`);
